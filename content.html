@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategia di Comunicazione — Test Maggio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #fc4c02;
+    --orange-light: #fd7d40;
+    --orange-glow: rgba(252, 76, 2, 0.08);
+    --orange-glow-strong: rgba(252, 76, 2, 0.14);
+    --lavender: #ae7eca;
+    --lavender-soft: rgba(174, 126, 202, 0.10);
+    --navy: #002d72;
+    --navy-mid: #003d8f;
+    --cream: #F7F3EE;
+    --cream-deep: #EDE6DC;
+    --sand: #D4C5B0;
+    --tan: #ca916c;
+    --tan-glow: rgba(202, 145, 108, 0.12);
+    --text: #1a1e2e;
+    --text-soft: #5a6070;
+    --text-muted: #8a8e9e;
+    --green: #3a8f6a;
+    --green-glow: rgba(58, 143, 106, 0.10);
+    --red-soft: #c45a4a;
+    --red-glow: rgba(196, 90, 74, 0.08);
+    --white-05: rgba(255,255,255,0.05);
+    --white-08: rgba(255,255,255,0.08);
+    --white-12: rgba(255,255,255,0.12);
+    --white-20: rgba(255,255,255,0.20);
+    --white-30: rgba(255,255,255,0.30);
+    --white-50: rgba(255,255,255,0.50);
+    --white-70: rgba(255,255,255,0.70);
+    --white-85: rgba(255,255,255,0.85);
+
+    --font-display: 'Nexa', 'Outfit', sans-serif;
+    --font-body: 'Nexa', 'Outfit', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--orange), var(--tan));
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 72px;
+    position: relative;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -15%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 6vw, 68px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text);
+    max-width: 780px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s ease 0.12s both;
+  }
+  .hero h1 em { font-style: italic; color: var(--orange); }
+  .hero-subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-soft);
+    max-width: 560px;
+    line-height: 1.55;
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s ease 0.24s both;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--sand);
+    animation: fadeUp 0.6s ease 0.36s both;
+  }
+  .hero-meta-item {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero-meta-item span {
+    display: block;
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 4px;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 72px; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3.8vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    max-width: 650px;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-soft);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 56px;
+  }
+
+  /* ── CONTEXT CARDS ── */
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .ctx-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 22px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.025);
+  }
+  .ctx-card .ctx-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .ctx-card .ctx-value {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .ctx-card .ctx-desc {
+    font-size: 12.5px;
+    color: var(--text-soft);
+    line-height: 1.55;
+  }
+
+  /* ── TARGET ── */
+  .target-section { background: var(--cream-deep); }
+  .target-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+  .target-profile {
+    background: #fff;
+    border-radius: 18px;
+    padding: 36px 32px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+  }
+  .target-profile .tp-name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .target-profile .tp-demo {
+    font-size: 13px;
+    color: var(--text-soft);
+    font-style: italic;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .target-profile .tp-desc {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+  .target-profile .tp-quote {
+    margin-top: 20px;
+    padding: 18px 22px;
+    background: var(--orange-glow);
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--orange);
+    line-height: 1.5;
+  }
+  .fears-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .fear-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 24px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.025);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .fear-card .fear-num {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--orange);
+    min-width: 28px;
+    line-height: 1.2;
+  }
+  .fear-card h4 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .fear-card p {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+  .desires-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .desire-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.025);
+  }
+  .desire-card .desire-icon {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .desire-card p {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* ── HIERARCHY (DARK) ── */
+  .hierarchy-section {
+    background: var(--navy);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hierarchy-section::before {
+    content: 'SICUREZZA';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: clamp(80px, 14vw, 200px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.02);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .hierarchy-section .section-label { color: var(--orange-light); }
+  .hierarchy-section .section-title { color: #fff; }
+  .hierarchy-section .section-desc { color: var(--white-50); }
+
+  .hier-center {
+    background: linear-gradient(145deg, rgba(252,76,2,0.18) 0%, rgba(252,76,2,0.06) 100%);
+    border: 1px solid rgba(252,76,2,0.3);
+    border-radius: 20px;
+    padding: 40px 36px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .hier-center .hc-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 100px;
+    background: var(--orange);
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .hier-center h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .hier-center p {
+    font-size: 15px;
+    color: var(--white-70);
+    line-height: 1.75;
+    max-width: 650px;
+  }
+  .hier-center .hc-rule {
+    margin-top: 20px;
+    padding: 16px 22px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--orange-light);
+    line-height: 1.5;
+  }
+
+  .hier-branches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .hier-branch {
+    background: var(--white-05);
+    border: 1px solid var(--white-08);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+  }
+  .hier-branch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+  }
+  .hier-branch:nth-child(1)::before { background: var(--orange); }
+  .hier-branch:nth-child(2)::before { background: var(--lavender); }
+  .hier-branch:nth-child(3)::before { background: var(--tan); }
+  .hier-branch .hb-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .hier-branch:nth-child(1) .hb-label { color: var(--orange-light); }
+  .hier-branch:nth-child(2) .hb-label { color: var(--lavender); }
+  .hier-branch:nth-child(3) .hb-label { color: var(--tan); }
+  .hier-branch h4 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .hier-branch p {
+    font-size: 13.5px;
+    color: var(--white-50);
+    line-height: 1.7;
+  }
+  .hier-branch .hb-arrow {
+    font-size: 12px;
+    color: var(--white-30);
+    margin-top: 14px;
+    font-style: italic;
+  }
+
+  .hier-result {
+    max-width: 600px;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--white-08);
+    border-radius: 14px;
+  }
+  .hier-result .hr-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white-30);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .hier-result p {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.4;
+  }
+
+  /* ── METHOD WORDS ── */
+  .method-section { background: var(--cream); }
+  .method-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+  .rule-card {
+    border-radius: 16px;
+    padding: 32px 28px;
+    position: relative;
+  }
+  .rule-card.no {
+    background: #fff;
+    border: 2px solid rgba(196, 90, 74, 0.15);
+  }
+  .rule-card.yes {
+    background: #fff;
+    border: 2px solid rgba(58, 143, 106, 0.2);
+  }
+  .rule-card .rc-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .rule-card.no .rc-badge { background: var(--red-glow); color: var(--red-soft); }
+  .rule-card.yes .rc-badge { background: var(--green-glow); color: var(--green); }
+  .rule-card .rc-example {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.45;
+    margin-bottom: 16px;
+  }
+  .rule-card.no .rc-example { color: var(--red-soft); text-decoration: line-through; text-decoration-color: rgba(196,90,74,0.3); }
+  .rule-card.yes .rc-example { color: var(--green); }
+  .rule-card .rc-why {
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 1.7;
+  }
+
+  .method-principle {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.025);
+    margin-bottom: 20px;
+  }
+  .method-principle h4 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .method-principle p {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.75;
+  }
+  .method-principle .mp-example {
+    margin-top: 14px;
+    padding: 14px 18px;
+    background: var(--orange-glow);
+    border-radius: 10px;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--orange);
+    line-height: 1.55;
+  }
+
+  /* ── WORDS YES/NO ── */
+  .words-section { background: var(--cream-deep); }
+  .words-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .words-col {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .words-col .wc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .words-col .wc-badge {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-weight: 700;
+  }
+  .words-col.yes .wc-badge { background: var(--green-glow); color: var(--green); }
+  .words-col.no .wc-badge { background: var(--red-glow); color: var(--red-soft); }
+  .words-col .wc-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .words-col ul {
+    list-style: none;
+    font-size: 14.5px;
+    line-height: 2.2;
+  }
+  .words-col ul li {
+    padding-left: 18px;
+    position: relative;
+  }
+  .words-col ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .words-col.yes ul li::before { background: var(--green-glow); border: 2px solid var(--green); }
+  .words-col.no ul li::before { background: var(--red-glow); border: 2px solid var(--red-soft); }
+  .words-col ul li .word-main { font-weight: 600; }
+  .words-col ul li .word-note { color: var(--text-soft); font-size: 13px; }
+
+  /* ── HOOKS (DARK) ── */
+  .hooks-section {
+    background: var(--navy);
+    color: #fff;
+  }
+  .hooks-section .section-label { color: var(--orange-light); }
+  .hooks-section .section-title { color: #fff; }
+  .hooks-section .section-desc { color: var(--white-50); }
+
+  .hooks-category {
+    margin-bottom: 40px;
+  }
+  .hooks-category:last-child { margin-bottom: 0; }
+  .hooks-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .hooks-cat-header .hch-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .hooks-cat-header h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .hooks-cat-header .hch-desc {
+    font-size: 12px;
+    color: var(--white-30);
+    font-style: italic;
+    margin-left: auto;
+  }
+  .hooks-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .hook-card {
+    background: var(--white-05);
+    border: 1px solid var(--white-08);
+    border-radius: 12px;
+    padding: 20px 22px;
+    transition: all 0.3s ease;
+  }
+  .hook-card:hover {
+    background: var(--white-08);
+    border-color: var(--white-12);
+  }
+  .hook-card .hook-text {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+  .hook-card .hook-use {
+    font-size: 11px;
+    color: var(--white-30);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── TOUCHPOINTS ── */
+  .touch-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .touch-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 36px 32px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .touch-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+  }
+  .touch-card:nth-child(1)::before { background: var(--orange); }
+  .touch-card:nth-child(2)::before { background: var(--lavender); }
+  .touch-card:nth-child(3)::before { background: var(--tan); }
+  .touch-card:nth-child(4)::before { background: var(--navy); }
+  .touch-card:nth-child(5)::before { background: var(--green); }
+  .touch-left {
+    border-right: 1px solid rgba(0,0,0,0.06);
+    padding-right: 28px;
+  }
+  .touch-left .tl-num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.06);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .touch-left h4 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .touch-left .tl-obj {
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.55;
+  }
+  .touch-right h5 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+    margin-top: 18px;
+  }
+  .touch-right h5:first-child { margin-top: 0; }
+  .touch-right p {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.75;
+  }
+  .touch-right .tr-hook {
+    padding: 12px 16px;
+    background: var(--orange-glow);
+    border-radius: 8px;
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--orange);
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+  .touch-right ul {
+    list-style: none;
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 2;
+  }
+  .touch-right ul li { padding-left: 16px; position: relative; }
+  .touch-right ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sand);
+  }
+
+  /* ── BRIDGE ── */
+  .bridge-section { background: var(--cream-deep); }
+  .bridge-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .bridge-card {
+    border-radius: 16px;
+    padding: 32px 28px;
+  }
+  .bridge-card.yt {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .bridge-card.plat {
+    background: linear-gradient(145deg, var(--navy) 0%, #001a45 100%);
+    color: #fff;
+  }
+  .bridge-card .bc-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .bridge-card.yt .bc-label { color: var(--text-muted); }
+  .bridge-card.plat .bc-label { color: var(--orange-light); }
+  .bridge-card h4 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .bridge-card p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .bridge-card.yt p { color: var(--text-soft); }
+  .bridge-card.plat p { color: var(--white-70); }
+  .bridge-arrow {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--sand);
+  }
+  .bridge-rules {
+    max-width: 650px;
+  }
+  .bridge-rules .br-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .bridge-rules .br-item:last-child { border-bottom: none; }
+  .bridge-rules .br-icon {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    min-width: 80px;
+    padding-top: 2px;
+  }
+  .bridge-rules .br-icon.do { color: var(--green); }
+  .bridge-rules .br-icon.dont { color: var(--red-soft); }
+  .bridge-rules p {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.65;
+  }
+
+  /* ── PRICE ── */
+  .price-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 40px;
+  }
+  .price-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.025);
+  }
+  .price-card .pc-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .price-card.no .pc-badge { background: var(--red-glow); color: var(--red-soft); }
+  .price-card.yes .pc-badge { background: var(--green-glow); color: var(--green); }
+  .price-card .pc-text {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  .price-card.no .pc-text { color: var(--red-soft); }
+  .price-card.yes .pc-text { color: var(--text); }
+  .price-card p {
+    font-size: 13.5px;
+    color: var(--text-soft);
+    line-height: 1.7;
+  }
+
+  .value-anchors {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .anchor-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 18px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .anchor-card .ac-value {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .anchor-card p {
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+  /* ── NEXT STEPS (DARK) ── */
+  .next-section {
+    background: var(--navy);
+    color: #fff;
+  }
+  .next-section .section-label { color: var(--orange-light); }
+  .next-section .section-title { color: #fff; }
+  .next-section .section-desc { color: var(--white-50); }
+  .next-list { max-width: 620px; }
+  .next-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--white-08);
+  }
+  .next-item:last-child { border-bottom: none; }
+  .next-item .ni-num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--orange);
+    min-width: 36px;
+    line-height: 1.2;
+  }
+  .next-item .ni-content h4 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .next-item .ni-content p {
+    font-size: 13.5px;
+    color: var(--white-50);
+    line-height: 1.6;
+  }
+  .next-item .ni-content .ni-owner {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: var(--white-08);
+    color: var(--white-50);
+    font-weight: 500;
+  }
+
+  .closing-note {
+    margin-top: 64px;
+    padding: 32px 36px;
+    background: rgba(252,76,2,0.08);
+    border: 1px solid rgba(252,76,2,0.15);
+    border-radius: 16px;
+    max-width: 620px;
+  }
+  .closing-note p {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--white-70);
+    line-height: 1.55;
+  }
+  .closing-note .cn-sign {
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-style: normal;
+    color: var(--white-30);
+    letter-spacing: 1px;
+  }
+
+  /* ── ALERT BOX ── */
+  .alert-box {
+    background: var(--tan-glow);
+    border-left: 3px solid var(--tan);
+    border-radius: 0 14px 14px 0;
+    padding: 24px 28px;
+    margin-top: 40px;
+    max-width: 700px;
+  }
+  .alert-box h4 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--tan);
+    margin-bottom: 8px;
+  }
+  .alert-box p {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.75;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 32px 72px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 1024px) {
+    section, .hero { padding-left: 40px; padding-right: 40px; }
+    .context-grid { grid-template-columns: 1fr 1fr; }
+    .target-main, .method-rules, .words-grid, .bridge-grid, .price-grid { grid-template-columns: 1fr; }
+    .hier-branches { grid-template-columns: 1fr; }
+    .hooks-list { grid-template-columns: 1fr; }
+    .touch-card { grid-template-columns: 1fr; }
+    .touch-left { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); padding-right: 0; padding-bottom: 20px; }
+    .desires-row { grid-template-columns: 1fr; }
+    .value-anchors { grid-template-columns: 1fr 1fr; }
+    .bridge-grid { grid-template-columns: 1fr; gap: 16px; }
+    .bridge-arrow { transform: rotate(90deg); }
+    .hero-meta { flex-wrap: wrap; gap: 24px; }
+  }
+  @media (max-width: 640px) {
+    section, .hero { padding-left: 24px; padding-right: 24px; }
+    .hero { min-height: auto; padding-top: 60px; }
+    .context-grid, .value-anchors { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"></div>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<div class="hero">
+  <div class="hero-eyebrow">Brief comunicazione</div>
+  <h1>Come parlare di <em>martinabindi.com</em></h1>
+  <p class="hero-subtitle">Framework, linguaggio, hook e touchpoint per la comunicazione del test maggio 2026. Documento operativo per la stesura dei testi.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">Per<span>Silvia Anelli</span></div>
+    <div class="hero-meta-item">Da<span>Niccol&ograve; Zampino</span></div>
+    <div class="hero-meta-item">Data<span>Aprile 2026</span></div>
+    <div class="hero-meta-item">Progetto<span>MPAS &mdash; Test maggio 2026</span></div>
+  </div>
+</div>
+
+<!-- ════════════════════ CONTESTO ════════════════════ -->
+<section>
+  <div class="section-label reveal">Contesto rapido</div>
+  <h2 class="section-title reveal reveal-delay-1">Cosa devi sapere prima di scrivere</h2>
+  <p class="section-desc reveal reveal-delay-2">martinabindi.com &egrave; una piattaforma pro-aging con esercizi corpo e massaggi viso. Non &egrave; ancora aperta al pubblico. A maggio parte il primo test a pagamento.</p>
+
+  <div class="context-grid reveal reveal-delay-3">
+    <div class="ctx-card">
+      <div class="ctx-label">Piattaforma</div>
+      <div class="ctx-value">martinabindi.com</div>
+      <div class="ctx-desc">Percorso pro-aging: esercizi corpo (3 livelli: Sedia / Base / Avanzato) + massaggi viso. Da 5 a 30 minuti al giorno. Struttura giornaliera con tracking progresso.</div>
+    </div>
+    <div class="ctx-card">
+      <div class="ctx-label">Test maggio</div>
+      <div class="ctx-value">&euro;97 una tantum</div>
+      <div class="ctx-desc">Accesso a lista ristretta, posizionamento &ldquo;preparazione all'estate.&rdquo; Poi si chiude.</div>
+    </div>
+    <div class="ctx-card">
+      <div class="ctx-label">Chi lo prova</div>
+      <div class="ctx-value">Pass Primavera Premium</div>
+      <div class="ctx-desc">Attivazione primaria: clienti bSoul che hanno acquistato il Pass con accesso prioritario incluso.</div>
+    </div>
+    <div class="ctx-card">
+      <div class="ctx-label">Obiettivo</div>
+      <div class="ctx-value">Validare, non vendere</div>
+      <div class="ctx-desc">&Egrave; un test, non un lancio. Raccogliere feedback, capire se il prodotto funziona, ottenere le prime testimonianze.</div>
+    </div>
+  </div>
+
+  <div class="alert-box reveal">
+    <h4>Naming del brand</h4>
+    <p>Martina ha due nomi registrati: <strong>Martina Pro Aging Specialist (MPAS)</strong> e <strong>Martina Transform Aging Specialist</strong>. Entrambi sono nostri. Nella comunicazione del test facciamo riferimento a Martina e alla piattaforma martinabindi.com, non ai nomi registrati.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ TARGET ════════════════════ -->
+<section class="target-section">
+  <div class="section-label reveal">A chi parliamo</div>
+  <h2 class="section-title reveal reveal-delay-1">Chi &egrave; Genoveffa</h2>
+  <p class="section-desc reveal reveal-delay-2">Non una persona immaginaria &mdash; &egrave; la sintesi delle clienti reali di Martina. Ogni testo che scriviamo parla a lei.</p>
+
+  <div class="target-main reveal reveal-delay-3">
+    <div class="target-profile">
+      <div class="tp-name">Genoveffa</div>
+      <div class="tp-demo">48&ndash;60 anni &middot; professionista &middot; reddito medio-alto &middot; peri o post menopausa</div>
+      <div class="tp-desc">Ha avuto una vita attiva, ma con la menopausa qualcosa &egrave; cambiato. Non si riconosce pi&ugrave;. Il corpo risponde diversamente, l'energia non &egrave; quella di prima. Si sente appesantita, rigida, affaticata. Ha gi&agrave; provato palestra, app, corsi &mdash; ha mollato ogni volta. Non si fida pi&ugrave; di s&eacute; stessa quando si tratta di iniziare qualcosa di nuovo.</div>
+      <div class="tp-quote">&ldquo;Si guarda allo specchio e non si riconosce. Si sente pi&ugrave; vecchia di come si sente dentro.&rdquo;</div>
+    </div>
+
+    <div class="fears-grid">
+      <div class="fear-card">
+        <div class="fear-num">1</div>
+        <div>
+          <h4>Fare gli esercizi sbagliati o farli male</h4>
+          <p>Paura di farsi male, peggiorare le cose, non essere capace. Non ha un esperto che la guidi. &Egrave; la paura dominante.</p>
+        </div>
+      </div>
+      <div class="fear-card">
+        <div class="fear-num">2</div>
+        <div>
+          <h4>Iniziare e mollare di nuovo</h4>
+          <p>L'ha gi&agrave; fatto tante volte. Non si fida pi&ugrave; della propria costanza. Ha bisogno di struttura, non di motivazione.</p>
+        </div>
+      </div>
+      <div class="fear-card">
+        <div class="fear-num">3</div>
+        <div>
+          <h4>Troppe scelte, non sapere cosa fare</h4>
+          <p>Video infiniti, app piene di opzioni, programmi generici. La paralisi da scelta la blocca ancora prima di iniziare.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="desires-row reveal">
+    <div class="desire-card">
+      <div class="desire-icon">Vuole</div>
+      <p>Sapere esattamente cosa fare ogni giorno</p>
+    </div>
+    <div class="desire-card">
+      <div class="desire-icon">Vuole</div>
+      <p>Sentirsi sicura che gli esercizi siano giusti per lei</p>
+    </div>
+    <div class="desire-card">
+      <div class="desire-icon">Vuole</div>
+      <p>Vedere risultati su corpo e viso senza stravolgere la routine</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ GERARCHIA EMOTIVA ════════════════════ -->
+<section class="hierarchy-section">
+  <div class="section-label reveal">Il framework</div>
+  <h2 class="section-title reveal reveal-delay-1">La gerarchia emotiva della comunicazione</h2>
+  <p class="section-desc reveal reveal-delay-2">Non tutti i messaggi hanno lo stesso peso. C'&egrave; un centro gravitazionale da cui discende tutto il resto.</p>
+
+  <div class="hier-center reveal reveal-delay-3">
+    <div class="hc-badge">Centro di tutto</div>
+    <h3>Sicurezza</h3>
+    <p>La paura di sbagliare &egrave; il pain point dominante di Genoveffa. Ha paura di fare esercizi sbagliati, di farsi male, di non essere capace. Ogni messaggio che scriviamo deve rispondere a questa paura &mdash; anche quando non la nomina esplicitamente. La sicurezza &egrave; il motivo per cui resta. L'insicurezza &egrave; il motivo per cui ha sempre mollato.</p>
+    <div class="hc-rule">&ldquo;Se Genoveffa si sente sicura, resta. Se non si sente sicura, molla. Tutto il resto viene dopo.&rdquo;</div>
+  </div>
+
+  <div class="hier-branches reveal">
+    <div class="hier-branch">
+      <div class="hb-label">Deriva dalla sicurezza</div>
+      <h4>Struttura</h4>
+      <p>&ldquo;Programma&rdquo;, non &ldquo;video.&rdquo; La struttura giornaliera elimina la paralisi da scelta. Genoveffa apre la piattaforma e sa cosa fare. Non deve decidere, non deve cercare &mdash; &egrave; gi&agrave; tutto pronto per lei.</p>
+      <div class="hb-arrow">Sicurezza di sapere cosa fare &rarr; resta</div>
+    </div>
+    <div class="hier-branch">
+      <div class="hb-label">Deriva dalla sicurezza</div>
+      <h4>Fiducia</h4>
+      <p>Dichiarare il metodo prima dell'acquisto. La ripetizione non &egrave; una sorpresa &mdash; &egrave; una scelta consapevole. Genoveffa sa cosa aspettarsi. Nessuna delusione, nessun &ldquo;ah ma sono sempre gli stessi.&rdquo;</p>
+      <div class="hb-arrow">Sicurezza di aver scelto bene &rarr; resta</div>
+    </div>
+    <div class="hier-branch">
+      <div class="hb-label">Deriva dalla sicurezza</div>
+      <h4>Motivazione</h4>
+      <p>Rendere visibile il progresso. Il tracking e i livelli mostrano che sta avanzando. Non &egrave; ferma &mdash; sta migliorando. La ripetizione ha un senso perch&eacute; produce padronanza misurabile.</p>
+      <div class="hb-arrow">Sicurezza di stare avanzando &rarr; resta</div>
+    </div>
+  </div>
+
+  <div class="hier-result reveal">
+    <div class="hr-label">Il risultato emotivo</div>
+    <p>Tornare a riconoscersi. Sentirsi di nuovo padrona del proprio corpo. Questo &egrave; quello che Genoveffa compra &mdash; non un accesso a una piattaforma.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ COME PARLARE DEL METODO ════════════════════ -->
+<section class="method-section">
+  <div class="section-label reveal">Il metodo</div>
+  <h2 class="section-title reveal reveal-delay-1">Come parlare della ripetizione</h2>
+  <p class="section-desc reveal reveal-delay-2">Gli esercizi si ripetono identici ogni settimana per ~2 mesi, poi cambia tutto. La regola: beneficio prima, meccanismo dopo. Mai la parola &ldquo;ripetizione&rdquo; da sola.</p>
+
+  <div class="method-rules reveal reveal-delay-3">
+    <div class="rule-card no">
+      <div class="rc-badge">Non cos&igrave;</div>
+      <div class="rc-example">&ldquo;Ripeti gli stessi esercizi per 2 mesi, poi cambiano.&rdquo;</div>
+      <div class="rc-why">Parte dal meccanismo. Genoveffa processa &ldquo;stessi esercizi per 2 mesi&rdquo; e alza la guardia. &ldquo;Ripeti&rdquo; &egrave; un trigger negativo &mdash; lei ha gi&agrave; mollato tante cose per noia. Il beneficio arriva troppo tardi.</div>
+    </div>
+    <div class="rule-card yes">
+      <div class="rc-badge">Cos&igrave;</div>
+      <div class="rc-example">&ldquo;Ogni esercizio ha il tempo di diventare tuo. Quando lo padroneggi, si cambia.&rdquo;</div>
+      <div class="rc-why">Parte dal beneficio. &ldquo;Diventare tuo&rdquo; e &ldquo;padroneggi&rdquo; sono parole di potere e controllo &mdash; esattamente quello che Genoveffa ha perso. Il meccanismo (la ripetizione) &egrave; implicito, non dichiarato.</div>
+    </div>
+  </div>
+
+  <div class="method-principle reveal">
+    <h4>Il frame corretto: padronanza, non ripetizione</h4>
+    <p>Nessuno si lamenta che il programma di fisioterapia ripeta gli stessi esercizi. Nessuno si lamenta che il maestro di pianoforte faccia rifare la stessa scala per settimane. Il frame &ldquo;programma&rdquo; implica ripetizione come metodo &mdash; il frame &ldquo;video&rdquo; implica variet&agrave; come intrattenimento. Dobbiamo stare nel primo frame.</p>
+    <div class="mp-example">&ldquo;Non devi scegliere tra centinaia di opzioni. &Egrave; il tuo programma pro-aging: sai cosa fare ogni giorno, e ogni giorno lo fai meglio.&rdquo;</div>
+  </div>
+
+  <div class="method-principle reveal">
+    <h4>Il ruolo di Martina nel metodo</h4>
+    <p>La ripetizione &egrave; il meccanismo. Martina &egrave; la garanzia. &ldquo;Questi esercizi li ha scelti Martina per il tuo corpo in menopausa&rdquo; &egrave; diverso da &ldquo;il programma prevede la ripetizione.&rdquo; L'autorit&agrave; di Martina &egrave; il motivo per cui Genoveffa si fida. Usiamola.</p>
+    <div class="mp-example">&ldquo;Martina ha costruito ogni giorno di questo percorso per una donna come te. Ogni esercizio &egrave; pensato per il tuo corpo adesso.&rdquo;</div>
+  </div>
+
+  <div class="method-principle reveal">
+    <h4>Comunicazione specifica per il test</h4>
+    <p>Il test dura ~2 mesi = un ciclo di esercizi. Le tester vivranno solo la ripetizione, mai il cambio. Questo va detto in modo chiaro ma positivo: stanno testando il primo ciclo completo, e il loro feedback servir&agrave; a costruire i cicli successivi. L'esclusivit&agrave; del ruolo compensa l'incompletezza dell'esperienza.</p>
+    <div class="mp-example">&ldquo;Stai provando il primo ciclo del percorso di Martina. Completo, strutturato, pensato per farti arrivare alla padronanza di ogni esercizio. Poi arriva il secondo ciclo &mdash; con esercizi nuovi.&rdquo;</div>
+  </div>
+</section>
+
+<!-- ════════════════════ PAROLE SÌ / PAROLE NO ════════════════════ -->
+<section class="words-section">
+  <div class="section-label reveal">Linguaggio</div>
+  <h2 class="section-title reveal reveal-delay-1">Parole s&igrave;, parole no</h2>
+  <p class="section-desc reveal reveal-delay-2">Guida rapida al vocabolario. Non &egrave; questione di sinonimi &mdash; ogni parola costruisce un frame diverso nella mente di Genoveffa.</p>
+
+  <div class="words-grid reveal reveal-delay-3">
+    <div class="words-col yes">
+      <div class="wc-header">
+        <div class="wc-badge">Usa</div>
+        <div class="wc-title">Parole s&igrave;</div>
+      </div>
+      <ul>
+        <li><span class="word-main">Pro-aging, percorso, programma</span><br><span class="word-note">Frame di cura e struttura, non di fatica</span></li>
+        <li><span class="word-main">Esercizi, movimento</span><br><span class="word-note">Neutri, accessibili, non intimidatori</span></li>
+        <li><span class="word-main">Padronanza, sicurezza, controllo</span><br><span class="word-note">Rispondono alla paura di sbagliare</span></li>
+        <li><span class="word-main">Il tuo corpo adesso</span><br><span class="word-note">Riconosce la menopausa senza patologizzarla</span></li>
+        <li><span class="word-main">Strutturato, guidato, giorno per giorno</span><br><span class="word-note">Elimina la paralisi da scelta</span></li>
+        <li><span class="word-main">Martina ti guida / Martina ha pensato</span><br><span class="word-note">Autorit&agrave; e relazione personale</span></li>
+        <li><span class="word-main">Ritrovare, riconoscersi, tornare</span><br><span class="word-note">La trasformazione emotiva del target</span></li>
+      </ul>
+    </div>
+
+    <div class="words-col no">
+      <div class="wc-header">
+        <div class="wc-badge">Evita</div>
+        <div class="wc-title">Parole no</div>
+      </div>
+      <ul>
+        <li><span class="word-main">Allenamento, fitness, workout</span><br><span class="word-note">Frame da palestra &mdash; intimidatorio per il target</span></li>
+        <li><span class="word-main">Ripetizione (isolata)</span><br><span class="word-note">Trigger di noia. Sempre accompagnata da beneficio</span></li>
+        <li><span class="word-main">Anti-aging, anti-invecchiamento</span><br><span class="word-note">Frame negativo. Pro-aging &egrave; il posizionamento</span></li>
+        <li><span class="word-main">Fatica, sforzo, sudore, bruciare</span><br><span class="word-note">Genoveffa non cerca sofferenza, cerca cura</span></li>
+        <li><span class="word-main">Archivio, catalogo, libreria video</span><br><span class="word-note">Distrugge il frame &ldquo;programma&rdquo;</span></li>
+        <li><span class="word-main">App, piattaforma (come soggetto)</span><br><span class="word-note">Il soggetto &egrave; Martina o il percorso, non il software</span></li>
+        <li><span class="word-main">Facile, semplice, per tutti</span><br><span class="word-note">Svaluta il prodotto. Meglio: &ldquo;pensato per te&rdquo;</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ HOOK LINES ════════════════════ -->
+<section class="hooks-section">
+  <div class="section-label reveal">Le frasi</div>
+  <h2 class="section-title reveal reveal-delay-1">Hook lines</h2>
+  <p class="section-desc reveal reveal-delay-2">Frasi pronte da usare come punto di partenza per titoli, oggetti email, aperture di paragrafo. Organizzate per leva emotiva.</p>
+
+  <div class="hooks-category reveal">
+    <div class="hooks-cat-header">
+      <div class="hch-dot" style="background: var(--orange);"></div>
+      <h3>Sicurezza</h3>
+      <div class="hch-desc">La leva primaria &mdash; risponde alla paura di sbagliare</div>
+    </div>
+    <div class="hooks-list">
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Ogni esercizio &egrave; pensato per il tuo corpo adesso.&rdquo;</div>
+        <div class="hook-use">Landing page, email, headline</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Non devi indovinare cosa fare. Lo sa gi&agrave; Martina per te.&rdquo;</div>
+        <div class="hook-use">Email invito, apertura landing</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Fatto bene vale pi&ugrave; di fatto tanto.&rdquo;</div>
+        <div class="hook-use">Titolo, social, oggetto email</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Il tempo di imparare ogni movimento. Nessuna fretta, nessun errore.&rdquo;</div>
+        <div class="hook-use">Descrizione metodo, landing page</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Un percorso costruito per il corpo di una donna in menopausa. Sicuro, calibrato, efficace.&rdquo;</div>
+        <div class="hook-use">Descrizione prodotto, email</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Gli esercizi giusti, nel modo giusto, al momento giusto.&rdquo;</div>
+        <div class="hook-use">Headline, titolo sezione</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hooks-category reveal">
+    <div class="hooks-cat-header">
+      <div class="hch-dot" style="background: var(--lavender);"></div>
+      <h3>Trasformazione</h3>
+      <div class="hch-desc">Il risultato emotivo &mdash; dove vuole arrivare Genoveffa</div>
+    </div>
+    <div class="hooks-list">
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Tornare a riconoscerti. Un giorno alla volta.&rdquo;</div>
+        <div class="hook-use">Headline principale, hero</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Non &egrave; ricominciare. &Egrave; ritrovarti.&rdquo;</div>
+        <div class="hook-use">Headline, chiusura email</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Il tuo corpo sta cambiando. Questo percorso cambia con te.&rdquo;</div>
+        <div class="hook-use">Landing, descrizione metodo</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Tra due mesi guarderai lo specchio con occhi diversi.&rdquo;</div>
+        <div class="hook-use">Chiusura, CTA, email</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hooks-category reveal">
+    <div class="hooks-cat-header">
+      <div class="hch-dot" style="background: var(--tan);"></div>
+      <h3>Struttura</h3>
+      <div class="hch-desc">Elimina la paralisi da scelta &mdash; il programma decide per te</div>
+    </div>
+    <div class="hooks-list">
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Apri. Sai cosa fare. Lo fai.&rdquo;</div>
+        <div class="hook-use">Tagline, headline, social</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Niente scelte infinite. Il tuo programma di oggi &egrave; gi&agrave; pronto.&rdquo;</div>
+        <div class="hook-use">Landing, descrizione funzionalit&agrave;</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Luned&igrave; &egrave; luned&igrave;. Sempre. Finch&eacute; non diventa naturale.&rdquo;</div>
+        <div class="hook-use">Descrizione metodo, spiegazione cicli</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Non devi scegliere. Non devi cercare. Sai gi&agrave; cosa fare oggi.&rdquo;</div>
+        <div class="hook-use">Differenziazione, landing, social</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hooks-category reveal">
+    <div class="hooks-cat-header">
+      <div class="hch-dot" style="background: #fff;"></div>
+      <h3>Martina come guida</h3>
+      <div class="hch-desc">L'autorit&agrave; e la relazione personale &mdash; il motivo per cui si fida</div>
+    </div>
+    <div class="hooks-list">
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Martina ha costruito ogni giorno di questo percorso per una donna come te.&rdquo;</div>
+        <div class="hook-use">Landing, email, presentazione metodo</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Su YouTube l'hai conosciuta. Qui ti guida, giorno per giorno.&rdquo;</div>
+        <div class="hook-use">Ponte YT &rarr; piattaforma, email invito</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Non sei sola. Hai Martina con te, ogni giorno.&rdquo;</div>
+        <div class="hook-use">Email benvenuto, onboarding</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Ho costruito questo percorso pensando a te.&rdquo;</div>
+        <div class="hook-use">Firmata da Martina &mdash; email invito, video</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hooks-category reveal">
+    <div class="hooks-cat-header">
+      <div class="hch-dot" style="background: var(--green);"></div>
+      <h3>Esclusivit&agrave; del test + preparazione all'estate</h3>
+      <div class="hch-desc">Solo per la comunicazione del test maggio &mdash; non a regime</div>
+    </div>
+    <div class="hooks-list">
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Sei tra le prime a provare il percorso pro-aging di Martina.&rdquo;</div>
+        <div class="hook-use">Email invito, apertura</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Un gruppo ristretto. Il tuo feedback dar&agrave; forma al percorso.&rdquo;</div>
+        <div class="hook-use">Landing, email, spiegazione test</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Non &egrave; aperto a tutti. &Egrave; riservato a chi ha gi&agrave; scelto Martina.&rdquo;</div>
+        <div class="hook-use">Email invito Pass Primavera</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;La tua esperienza conter&agrave;. Ogni feedback migliora il programma per tutte.&rdquo;</div>
+        <div class="hook-use">Onboarding, post-acquisto</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Due mesi per arrivare all'estate sentendoti diversa. Con Martina, a casa tua.&rdquo;</div>
+        <div class="hook-use">Landing hero, email invito, CTA</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;La tua preparazione all'estate inizia qui. Non in palestra &mdash; con Martina, al tuo ritmo.&rdquo;</div>
+        <div class="hook-use">Headline landing, oggetto email</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hooks-category reveal">
+    <div class="hooks-cat-header">
+      <div class="hch-dot" style="background: var(--tan);"></div>
+      <h3>Il viso: il differenziatore</h3>
+      <div class="hch-desc">Il percorso viso &egrave; l'USP &mdash; nessun altro programma lo include cos&igrave;</div>
+    </div>
+    <div class="hooks-list">
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Corpo e viso, insieme. Il percorso viso non lo trovi da nessun'altra parte &mdash; non cos&igrave;.&rdquo;</div>
+        <div class="hook-use">Landing, differenziazione, descrizione prodotto</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Il viso &egrave; il primo posto dove vedi l'et&agrave;. Ed &egrave; il primo posto dove puoi lavorarci, ogni giorno, con le tue mani.&rdquo;</div>
+        <div class="hook-use">Landing sezione viso, email, social</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Drenaggio, ossigenazione, tonificazione. Un ciclo per il tuo viso che nessuno ti ha mai insegnato.&rdquo;</div>
+        <div class="hook-use">Descrizione percorso viso, landing</div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-text">&ldquo;Non solo corpo. Il percorso pro-aging di Martina include il viso &mdash; massaggi ed esercizi che cambiano quello che vedi allo specchio.&rdquo;</div>
+        <div class="hook-use">Differenziazione, email, landing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ TOUCHPOINT ════════════════════ -->
+<section>
+  <div class="section-label reveal">I materiali</div>
+  <h2 class="section-title reveal reveal-delay-1">Cosa scrivere, per chi, con che tono</h2>
+  <p class="section-desc reveal reveal-delay-2">Ogni touchpoint ha un obiettivo diverso. Qui sotto: brief operativi per ogni testo da produrre.</p>
+
+  <div class="touch-grid">
+    <div class="touch-card reveal">
+      <div class="touch-left">
+        <div class="tl-num">01</div>
+        <h4>Email invito</h4>
+        <div class="tl-obj">Portare le Pass Primavera Premium sulla landing page. Il video pre-acquisto di Martina &egrave; l'elemento centrale &mdash; il testo fa da contorno.</div>
+      </div>
+      <div class="touch-right">
+        <h5>Destinatari</h5>
+        <p>Acquirenti Pass Primavera Premium (clienti bSoul che avevano incluso accesso prioritario alla piattaforma di Martina).</p>
+        <h5>Tono</h5>
+        <p>Personale, esclusivo, diretto. Firmata da Martina, non dal brand. Come un messaggio personale, non una newsletter.</p>
+        <h5>Messaggio chiave</h5>
+        <div class="tr-hook">&ldquo;Ho costruito qualcosa per te. Sei tra le prime a poterlo provare.&rdquo;</div>
+        <h5>Il cuore dell'email: video di Martina</h5>
+        <p>Il messaggio principale non &egrave; il testo &mdash; &egrave; un video pre-acquisto di Martina (90-120 secondi). Martina parla direttamente alle sue clienti, spiega cosa ha costruito, perch&eacute; l'ha fatto, e le invita a provarlo. Silvia scrive il contorno dell'email: oggetto, la riga che introduce il video, la riga che lo chiude, e la CTA. Il video fa il lavoro pesante.</p>
+        <h5>Struttura suggerita</h5>
+        <ul>
+          <li>Oggetto email (genera l'apertura)</li>
+          <li>Riga introduttiva sopra il video (1-2 righe, crea contesto)</li>
+          <li>Video pre-acquisto di Martina (90-120 sec &mdash; il cuore dell'email)</li>
+          <li>Riga sotto il video (rafforza il messaggio, leva esclusivit&agrave;)</li>
+          <li>CTA chiaro verso la landing page</li>
+          <li>Firma Martina</li>
+        </ul>
+        <h5>Leva esclusivit&agrave;</h5>
+        <p>L'email &egrave; il posto giusto per il frame &ldquo;accesso riservato.&rdquo; Le tester non stanno solo comprando un programma &mdash; stanno entrando in un'esperienza riservata. &ldquo;Posti limitati, poi si chiude.&rdquo; Questa leva funziona qui perch&eacute; il messaggio &egrave; personale e diretto.</p>
+        <h5>Attenzione</h5>
+        <p>Il testo supporta il video, non il contrario. Poche righe attorno al video di Martina. Non spiegare tutto nell'email &mdash; l'obiettivo &egrave; generare il click. Il dettaglio sta sulla landing.</p>
+      </div>
+    </div>
+
+    <div class="touch-card reveal">
+      <div class="touch-left">
+        <div class="tl-num">02</div>
+        <h4>Landing page del test</h4>
+        <div class="tl-obj">Spiegare chiaramente cosa offre il test e perch&eacute; vale la pena provarlo. Copy coinvolgente e onesto &mdash; l'obiettivo &egrave; ottenere le tester giuste, non vendere al maggior numero possibile.</div>
+      </div>
+      <div class="touch-right">
+        <h5>Tono</h5>
+        <p>Autorevole e caldo. Parla a Genoveffa in seconda persona. Struttura chiara, sezioni brevi.</p>
+        <h5>Messaggio chiave</h5>
+        <div class="tr-hook">&ldquo;Il tuo percorso pro-aging strutturato da Martina. Per il tuo corpo adesso.&rdquo;</div>
+        <h5>Struttura suggerita</h5>
+        <ul>
+          <li>Hero: hook emotivo (trasformazione) + sottotitolo (cos'&egrave;)</li>
+          <li>Per chi &egrave;: riconoscimento Genoveffa (&ldquo;se ti riconosci in questo...&rdquo;)</li>
+          <li>Cosa trovi: percorso corpo (3 livelli: Sedia / Base / Avanzato, da 5 a 30 min/giorno) + percorso viso (ciclo 7 giorni)</li>
+          <li>Il metodo: perch&eacute; funziona cos&igrave; (padronanza, sicurezza)</li>
+          <li>Martina: chi l'ha costruito e perch&eacute;</li>
+          <li>Il test: esclusivit&agrave;, lista ristretta, il tuo feedback conta</li>
+          <li>Prezzo + CTA</li>
+          <li>FAQ essenziali (3-4 domande). Suggerite: &ldquo;Quanto tempo ci vuole al giorno?&rdquo; (5-30 min) / &ldquo;E se non sono in forma?&rdquo; (3 livelli, si parte anche da seduta) / &ldquo;Gli esercizi sono sempre gli stessi?&rdquo; (s&igrave;, per 2 mesi &mdash; &egrave; il metodo di padronanza, poi si cambia) / &ldquo;Cosa succede dopo il test?&rdquo; (l'accesso si chiude, chi vuole continuare avr&agrave; priorit&agrave;)</li>
+        </ul>
+        <h5>Attenzione</h5>
+        <p>Dichiarare il metodo (ripetizione = padronanza) PRIMA del bottone acquisto. Chi compra deve sapere come funziona. Se lo scopre dopo, &egrave; un problema.</p>
+      </div>
+    </div>
+
+    <div class="touch-card reveal">
+      <div class="touch-left">
+        <div class="tl-num">03</div>
+        <h4>Email benvenuto post-acquisto</h4>
+        <div class="tl-obj">Confermare l'acquisto e guidare il primo accesso. Il video &ldquo;Inizia da qui&rdquo; di Martina &egrave; l'elemento centrale &mdash; il testo fa da contorno.</div>
+      </div>
+      <div class="touch-right">
+        <h5>Tono</h5>
+        <p>Caldo, pratico, rassicurante. &ldquo;Sei nel posto giusto, ecco cosa fare.&rdquo; Zero overwhelm.</p>
+        <h5>Messaggio chiave</h5>
+        <div class="tr-hook">&ldquo;Benvenuta. Ecco cosa fare appena entri.&rdquo;</div>
+        <h5>Il cuore dell'email: video &ldquo;Inizia da qui&rdquo; di Martina</h5>
+        <p>Il messaggio principale non &egrave; il testo &mdash; &egrave; un video post-acquisto di Martina (2-3 minuti). Martina d&agrave; il benvenuto, spiega come funziona il percorso, cosa aspettarsi, e come iniziare. Silvia scrive il contorno dell'email: conferma acquisto, la riga che introduce il video, l'indicazione &ldquo;guarda il video prima di entrare&rdquo;, e il link alla piattaforma. Il video fa il lavoro pesante.</p>
+        <h5>Struttura suggerita</h5>
+        <ul>
+          <li>Conferma accesso (&ldquo;il tuo accesso &egrave; attivo&rdquo;)</li>
+          <li>Video &ldquo;Inizia da qui&rdquo; di Martina (2-3 min &mdash; il cuore dell'email)</li>
+          <li>Indicazione: &ldquo;guarda il video prima di entrare&rdquo;</li>
+          <li>Link alla piattaforma</li>
+          <li>Come chiedere aiuto se serve</li>
+        </ul>
+        <h5>Attenzione</h5>
+        <p>Un solo passo alla volta. Il video di Martina fa il lavoro pesante &mdash; spiega tutto quello che serve. Il testo conferma l'acquisto e guida verso il video, poi verso la piattaforma. Non sovraccaricare con istruzioni: il video c'&egrave; per questo.</p>
+      </div>
+    </div>
+
+    <div class="touch-card reveal">
+      <div class="touch-left">
+        <div class="tl-num">04</div>
+        <h4>Messaggio in piattaforma</h4>
+        <div class="tl-obj">Esiste gi&agrave; un messaggio di benvenuto in piattaforma. Va rivisto insieme a Silvia per allinearlo al tono e al linguaggio di questo brief.</div>
+      </div>
+      <div class="touch-right">
+        <h5>Stato</h5>
+        <p><strong>Revisione, non creazione da zero.</strong> Il messaggio attuale va verificato e aggiornato per coerenza con il framework di comunicazione del test.</p>
+        <h5>Tono target</h5>
+        <p>Accogliente, brevissimo. Come Martina che ti dice &ldquo;vieni, ti faccio vedere.&rdquo;</p>
+        <h5>Messaggio chiave</h5>
+        <div class="tr-hook">&ldquo;Benvenuta nel tuo percorso pro-aging. Inizia da qui.&rdquo;</div>
+        <h5>Cosa verificare</h5>
+        <ul>
+          <li>Il linguaggio rispetta le Parole S&igrave; / Parole No di questo brief?</li>
+          <li>L'indicazione &egrave; chiara e singola? (&ldquo;Scegli il tuo livello e inizia con l'esercizio di oggi&rdquo;)</li>
+          <li>Non c'&egrave; overwhelm? La piattaforma deve parlare da sola.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="touch-card reveal">
+      <div class="touch-left">
+        <div class="tl-num">05</div>
+        <h4>Email NPS</h4>
+        <div class="tl-obj">Post-test: due email diverse per raccogliere feedback e richiedere video-recensioni. Firmate da Martina.</div>
+      </div>
+      <div class="touch-right">
+        <h5>Formato</h5>
+        <p><strong>Email, firmate da Martina.</strong> Non sono newsletter e non sono inviate da Niccol&ograve;. Sono email personali di Martina alle sue tester.</p>
+        <h5>Due email diverse</h5>
+        <p><strong>Promoter (NPS &gt; 9):</strong> Gratitudine + richiesta video-recensione. Tono: &ldquo;la tua esperienza pu&ograve; aiutare altre donne come te.&rdquo; In cambio: prodotti bSoul o periodo di accesso pi&ugrave; lungo (da definire).</p>
+        <p style="margin-top: 12px;"><strong>Detractor (NPS &lt; 9):</strong> Ascolto genuino + richiesta feedback dettagliato. Tono: &ldquo;il tuo feedback &egrave; prezioso, voglio capire cosa migliorare.&rdquo; Proposta di contatto diretto: call o WhatsApp per approfondire.</p>
+        <h5>Attenzione</h5>
+        <p>Queste email non sono marketing. Sono Martina che chiede personalmente alle sue tester come &egrave; andata. Il tono deve essere autentico, diretto, da persona a persona. Firma: Martina.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ PONTE YT → PIATTAFORMA ════════════════════ -->
+<section class="bridge-section">
+  <div class="section-label reveal">Il ponte</div>
+  <h2 class="section-title reveal reveal-delay-1">YouTube e piattaforma: come collegarli</h2>
+  <p class="section-desc reveal reveal-delay-2">YouTube &egrave; dove Genoveffa ha conosciuto Martina. La piattaforma &egrave; il passo successivo. Il messaggio &egrave; di evoluzione, mai di contrapposizione.</p>
+
+  <div class="bridge-grid reveal reveal-delay-3">
+    <div class="bridge-card yt">
+      <div class="bc-label">YouTube</div>
+      <h4>Dove l'hai conosciuta</h4>
+      <p>Video liberi, variet&agrave;, scoperta. Conosci il pro-aging, trovi ispirazione, entri nel mondo di Martina. Accesso gratuito, senza impegno. Il primo passo.</p>
+    </div>
+    <div class="bridge-arrow">&rarr;</div>
+    <div class="bridge-card plat">
+      <div class="bc-label">Piattaforma</div>
+      <h4>Dove il percorso diventa tuo</h4>
+      <p>Programma strutturato, giorno per giorno. Livelli, tracking, esercizi pensati per il tuo corpo in menopausa. Da scoperta a percorso. Da ispirazione a risultati.</p>
+    </div>
+  </div>
+
+  <div class="bridge-rules reveal">
+    <div class="br-item">
+      <div class="br-icon do">Fai</div>
+      <p>Presentare la piattaforma come evoluzione naturale: &ldquo;Hai scoperto il pro-aging su YouTube. Qui diventa il tuo percorso strutturato.&rdquo;</p>
+    </div>
+    <div class="br-item">
+      <div class="br-icon do">Fai</div>
+      <p>Valorizzare YouTube come punto di partenza: &ldquo;28.000 iscritte hanno gi&agrave; iniziato con Martina su YouTube.&rdquo;</p>
+    </div>
+    <div class="br-item">
+      <div class="br-icon do">Fai</div>
+      <p>Usare il linguaggio dell'evoluzione: &ldquo;il passo successivo&rdquo;, &ldquo;il percorso completo&rdquo;, &ldquo;da scoperta a risultati.&rdquo;</p>
+    </div>
+    <div class="br-item">
+      <div class="br-icon dont">Non fare</div>
+      <p>Mai contrapporre piattaforma e YouTube: niente &ldquo;su YouTube non basta&rdquo;, &ldquo;i video da soli non funzionano&rdquo;, &ldquo;YouTube &egrave; limitato.&rdquo;</p>
+    </div>
+    <div class="br-item">
+      <div class="br-icon dont">Non fare</div>
+      <p>Mai svalutare i video YouTube: sono il primo contatto di migliaia di donne con Martina. Svalutarli svaluta la relazione.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ PREZZO ════════════════════ -->
+<section>
+  <div class="section-label reveal">Il prezzo</div>
+  <h2 class="section-title reveal reveal-delay-1">Come parlare di &euro;97</h2>
+  <p class="section-desc reveal reveal-delay-2">&euro;97 non &egrave; poco per un prodotto sconosciuto. Il prezzo va ancorato al valore concreto, non all'accesso generico.</p>
+
+  <div class="price-grid reveal reveal-delay-3">
+    <div class="price-card no">
+      <div class="pc-badge">Non cos&igrave;</div>
+      <div class="pc-text">&ldquo;Accesso alla piattaforma: &euro;97&rdquo;</div>
+      <p>Genoveffa pensa: &ldquo;97 euro per un sito con dei video?&rdquo; L'accesso non ha valore percepito. Il frame &egrave; sbagliato &mdash; sembra un paywall, non un investimento.</p>
+    </div>
+    <div class="price-card yes">
+      <div class="pc-badge">Cos&igrave;</div>
+      <div class="pc-text">&ldquo;Il percorso pro-aging di Martina per 2 mesi: corpo + viso, giorno per giorno. &euro;97&rdquo;</div>
+      <p>Genoveffa pensa: &ldquo;il programma completo di Martina, costruito per me, per 2 mesi.&rdquo; Il prezzo &egrave; ancorato al valore &mdash; Martina, struttura, durata, completezza.</p>
+    </div>
+  </div>
+
+  <div class="value-anchors reveal">
+    <div class="anchor-card">
+      <div class="ac-value">2 mesi</div>
+      <p>Percorso strutturato completo. Non un giorno, non una settimana.</p>
+    </div>
+    <div class="anchor-card">
+      <div class="ac-value">Corpo + Viso</div>
+      <p>Due percorsi in uno. Nessun'altra offerta li unisce cos&igrave;.</p>
+    </div>
+    <div class="anchor-card">
+      <div class="ac-value">6 gg / sett</div>
+      <p>Programma dal luned&igrave; al sabato. Struttura quotidiana reale.</p>
+    </div>
+    <div class="anchor-card">
+      <div class="ac-value">Martina</div>
+      <p>Costruito da lei, per il tuo corpo in menopausa. Non generico.</p>
+    </div>
+  </div>
+
+  <div class="alert-box reveal">
+    <h4>Nota: l'esclusivit&agrave; va sull'email, non sulla landing</h4>
+    <p>Il frame &ldquo;accesso riservato alle clienti Pass Primavera Premium, posti limitati, poi si chiude&rdquo; &egrave; una leva per l'email di invito, dove il messaggio &egrave; personale e diretto. Sulla landing page il focus deve restare sul valore del percorso, non sull'esclusivit&agrave; del test.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ PROSSIMI PASSI ════════════════════ -->
+<section class="next-section">
+  <div class="section-label reveal">Prossimi passi</div>
+  <h2 class="section-title reveal reveal-delay-1">Cosa fare con questo documento</h2>
+  <p class="section-desc reveal reveal-delay-2">Questo brief &egrave; il framework. I testi vanno scritti, validati e approvati.</p>
+
+  <div class="next-list reveal reveal-delay-3">
+    <div class="next-item">
+      <div class="ni-num">1</div>
+      <div class="ni-content">
+        <h4>Stesura contorno email invito</h4>
+        <p>Silvia scrive il contorno dell'email (oggetto, riga sopra il video, riga sotto il video, CTA). Il messaggio principale &egrave; il video pre-acquisto di Martina (script separato).</p>
+        <div class="ni-owner">Silvia</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <div class="ni-num">2</div>
+      <div class="ni-content">
+        <h4>Stesura landing page</h4>
+        <p>Testi per la pagina di acquisto. Struttura e sezioni come da brief touchpoint 02. Il design viene dopo.</p>
+        <div class="ni-owner">Silvia</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <div class="ni-num">3</div>
+      <div class="ni-content">
+        <h4>Revisione e feedback</h4>
+        <p>Niccol&ograve; rivede le bozze per allineamento strategico e coerenza col brief. Iterazione rapida.</p>
+        <div class="ni-owner">Niccol&ograve;</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <div class="ni-num">4</div>
+      <div class="ni-content">
+        <h4>Validazione Martina</h4>
+        <p>Martina approva tono, linguaggio e messaggi chiave. La sua voce deve sentirsi autentica.</p>
+        <div class="ni-owner">Martina</div>
+      </div>
+    </div>
+    <div class="next-item">
+      <div class="ni-num">5</div>
+      <div class="ni-content">
+        <h4>Contorno email benvenuto + revisione messaggio piattaforma + email NPS</h4>
+        <p>Email benvenuto: Silvia scrive il contorno (conferma acquisto, riga introduttiva al video, indicazione, link piattaforma). Il messaggio principale &egrave; il video &ldquo;Inizia da qui&rdquo; di Martina (script separato). Messaggio piattaforma: revisione di quello esistente. Email NPS: stesura da zero, firmate da Martina. Dipendono dalla conferma del flusso tecnico con Alberto.</p>
+        <div class="ni-owner">Silvia + Niccol&ograve;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing-note reveal">
+    <p>I testi non sono decorazione. Sono il primo contatto che Genoveffa ha col percorso di Martina. Se la comunicazione funziona, arrivano le tester giuste per validare il prodotto. Se non funziona, non avremo i dati per decidere i passi successivi.</p>
+    <div class="cn-sign">&mdash; Brief comunicazione MPAS, Aprile 2026</div>
+  </div>
+</section>
+
+<div class="footer">
+  Strategia di Comunicazione MPAS &mdash; Test Maggio 2026 &mdash; Brief operativo per Silvia Anelli &mdash; Documento interno
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.querySelector('.progress-bar').style.width = progress + '%';
+  }, { passive: true });
+</script>
+
+</body>
+</html>
